@@ -1,0 +1,31 @@
+<br>
+<div class="container">
+<?php
+    echo $this->article['id'] . '<br>';
+    echo $this->article['name'] . '<br>';
+    echo $this->article['short_text'] . '<br>';
+    echo $this->article['full_text'] . '<br>';
+?>
+</div>
+    <table>
+        <tr>
+            <td>Коментар</td>
+        </tr>
+
+    <?php
+
+    foreach($this->list as $value){
+
+        echo "<tr>
+                <td>{$value['comment']}</td>
+              </tr>";
+
+    }
+
+    ?>
+
+    </table>
+
+<?php
+    echo $this->form;
+?>

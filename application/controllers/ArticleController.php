@@ -50,12 +50,75 @@ class ArticleController extends Zend_Controller_Action
 
     public function listAction()
     {
-        $db = new Application_Model_DbTable_Article();
+        $identity = Zend_Auth::getInstance()->getStorage()->read();
+        if($identity){
 
+            $this->view->name = $identity->first_name;
+
+        }
+
+        $articles = new Application_Model_DbTable_Article();
+        $this->view->list = $articles->listArticles();
+        
+    }
+
+    public function idAction()
+    {
+
+        $db = new Application_Model_DbTable_Article();
+        $comments = new Application_Model_DbTable_Comment();
+        $form = new Application_Form_Review();
+
+        $identity = Zend_Auth::getInstance()->getStorage()->read();
+
+        if($this->getRequest()->isPost()){
+
+
+
+            #отримуємо дані з пост запиту
+            $formData = $this->getRequest()->getPost();
+            #перевіряємо чи всі обов'язкові(за налаштуваннями форми) дані отримано
+            if($form->isValid($formData)){
+
+
+
+                #отримуємо передані пароль і логін
+                $text = $this->getRequest()->getParam('comment');
+                $article_id = $this->getRequest()->getParam('id');
+                $identity = Zend_Auth::getInstance()->getStorage()->read();
+
+
+                $comments->newComment($text, $article_id, $identity->id);
+
+
+            }
+        }
+
+        $this->view->list = $comments->getArticleComments($this->getRequest()->getParam('id'));
+        $this->view->form = $form;
+        $this->view->article = $db->getArticleById($this->getRequest()->getParam('id'));
+
+
+    }
+
+    public function reviewAction()
+    {
+        // action body
+    }
+
+    public function commentListAction()
+    {
+        // action body
     }
 
 
 }
+
+
+
+
+
+
 
 
 

@@ -3,19 +3,55 @@
     <title>zf layout</title>
     <?php   echo $this->jQuery(); ?>
     <?php   $this->headScript()->appendFile('/js/bootstrap.js');?>
+    <?php   $this->headScript()->appendFile('/js/jquery.js');?>
 
     <?php   $this->headLink()->appendStylesheet('/css/bootstrap.css');?>
     <?php   $this->headLink()->appendStylesheet('/css/bootstrap-responsive.css');?>
+    <?php   $this->headLink()->appendStylesheet('/css/style.css');?>
 
     <?php echo $this->headScript();?>
     <?php echo $this->headLink();?>
 </head>
 <body>
-<a href="/user/registration">Реєстрація</a>
-<a href="/index/index">Головна</a>
-<a href="/user/login">Логін</a>
-<a href="/article/new">Додати статтю</a>
-<a href="/article/list">Список статей</a>
-<?php echo $this->layout()->content;?>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="pagination-centered"><h1>Zend Training</h1></div>
+        <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+                <div class="container">
+                    <ul class="nav">
+                        <?php
+
+                            echo $this->navigation()
+                                      ->menu()
+                                      ->setMaxDepth(0)
+                                      ->render(new Maslov_Navigation($this->navigation()->findAllBy('tag','topMenu',true)));
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span10 offset5">
+        <?php echo $this->layout()->content;?>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="hero-unit">
+            <h1>Fuck off</h1>
+            <p></p>
+            <p>
+                <a class="btn btn-primary btn-large" href="http://zend-frameworks.com" target="_blank">
+                    Learn more
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
