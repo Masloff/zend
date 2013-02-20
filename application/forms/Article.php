@@ -28,7 +28,7 @@ class Application_Form_Article extends Zend_Form
                    ->setAttrib('id', 'full_text');
 
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setAttrib('id', 'submit');
+        $submit->setAttrib('id', 'submitArticle');
 
         $this->addElements(array($id, $name, $short_text, $full_text, $submit));
 

@@ -60,6 +60,8 @@ class ArticleController extends Zend_Controller_Action
         }
 
         $articles = new Application_Model_DbTable_Article();
+
+        $this->view->owner = $identity->id;
         $this->view->list = $articles->listArticles();
         
     }
@@ -96,6 +98,7 @@ class ArticleController extends Zend_Controller_Action
             }
         }
 
+        $this->view->owner = $identity->id;
         $this->view->list = $comments->getArticleComments($this->getRequest()->getParam('id'));
         $this->view->form = $form;
         $this->view->article = $db->getArticleById($this->getRequest()->getParam('id'));
@@ -120,6 +123,13 @@ class ArticleController extends Zend_Controller_Action
         $db = new Application_Model_DbTable_Article();
         $identity =  Zend_Auth::getInstance()->getStorage()->read();
 
+        if($this->getRequest()->getParam('delete')){
+
+
+            $db->deleteArticle($this->getRequest()->getParam('delete'));
+            $this->redirect("/article/list");
+
+        }
 
         if($this->getRequest()->isPost()){
 
@@ -148,8 +158,10 @@ class ArticleController extends Zend_Controller_Action
 
         if($this->getRequest()->getParam('delete')){
 
-
+            $data = $comments->getCommentById($this->getRequest()->getParam('delete'));
             $comments->deleteComment($this->getRequest()->getParam('delete'));
+            $this->redirect("/article/id/". $data['article_id']);
+
 
         }
 

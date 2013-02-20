@@ -31,6 +31,15 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     }
 
+    public function listUsers(){
+
+        $data = $this   ->select()
+                        ->from($this->_name);
+
+
+        return $data->query()->fetchAll();
+
+    }
 
 }
 

@@ -2,31 +2,40 @@
 if($this->name){
     echo 'Привіт ' . $this->name;
 }
-?>
+if(isset($this->owner)){
 
-<table>
-    <tr>
-        <td>Назва статті</td>
-        <td>Опис</td>
-        <td>Перейти до статті</td>
-        <td>Редагувати</td>
+    echo "<p></p>
+          <table>
+            <tr>
+                <td>Назва статті</td>
+                <td>Опис</td>
+                <td>Перейти до статті</td>
+                <td>Редагувати</td>
 
-    </tr>
-
-<?php
+            </tr>";
 
     foreach($this->list as $value){
 
         echo "<tr>
                 <td>{$value['name']}</td>
                 <td>{$value['short_text']}</td>
-                <td><a href='/article/id/{$value['id']}'>Show</a></td>
-                <td><a href='/article/edit/{$value['id']}'>Edit</a></td>
-              </tr>";
+                <td><a href='/article/id/{$value['id']}'>Show</a></td>";
+
+                if($this->owner == $value['owner_id']){
+
+                    echo "<td><a href='/article/edit/{$value['id']}'>Edit</a></td>";
+                }
+
+        echo "</tr>";
 
     }
 
-?>
+    echo "</table>
+          <br>
+          <p><a href='/article/new'><b>Додати нову статтю</b></a></p>";
 
-</table>
+}
+
+else echo 'You\'re a cunt! Go and register yourself!';
+
 

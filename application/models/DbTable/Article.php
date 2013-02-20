@@ -66,5 +66,11 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract
 
     }
 
+    public function deleteArticle($id){
+
+        $this->delete('id=' . (int)$id);
+
+    }
+
 }
 

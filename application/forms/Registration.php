@@ -33,7 +33,7 @@ class Application_Form_Registration extends Zend_Form
             ->setAttrib('id', 'password');
 
         $submit = new Zend_Form_Element_Submit('submit');
-        $submit->setAttrib('id', 'submit');
+        $submit->setAttrib('id', 'submitButton');
 
         $this->addElements(array($first_name, $last_name, $email, $password, $submit));
 

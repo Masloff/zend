@@ -68,6 +68,36 @@ return array(
                 'action' => 'list',
                 'resource' => 'article',
                 'privilege' => 'list',
+            ),
+            array(
+                'label' => 'Список користувачів',
+                'tag' => 'topMenu',
+                'route' => 'default',
+                'module' => 'default',
+                'controller' => 'admin',
+                'action' => 'users',
+                'resource' => 'admin',
+                'privilege' => 'users',
+            ),
+            array(
+                'label' => 'Редагувати статті',
+                'tag' => 'topMenu',
+                'route' => 'default',
+                'module' => 'default',
+                'controller' => 'admin',
+                'action' => 'articles',
+                'resource' => 'admin',
+                'privilege' => 'articles',
+            ),
+            array(
+                'label' => 'Редагувати коментарі',
+                'tag' => 'topMenu',
+                'route' => 'default',
+                'module' => 'default',
+                'controller' => 'admin',
+                'action' => 'comments',
+                'resource' => 'admin',
+                'privilege' => 'comments',
             )
         )
     )

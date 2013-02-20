@@ -1,48 +1,120 @@
 $(document).ready(function () {
 
-    $('.submit').prop('disabled', true);
+    $("#submit").click(function(){
 
-    // elements содержит количество элементов для валидации
-    var elements = $('#email').length;
+        var login = $("#email").val();
+        var password = $("#password").val();
 
-    // has содержит количество элементов успешно прощедших валидацию
-    var has;
+        if(login && password){
+            $("#logForm").submit();
+        }
 
-    // при изменении значения поля
-    $('#email').change(function()
-    {
-        // формируем массив для отправки на сервер, нас интересуют значение поля и css-классы
-        //на сервере массив будет доступен в виде $_POST['validation']['name']['value'] и т.п.
-        var name = $(this).attr('name');
-        var data = {};
-        data['validation[' + name + '][value]'] = $(this).val();
-        data['validation[' + name + '][class]'] = $(this).attr('class');
+        else {
+            if(!login){
 
-        // делаем ajax-запрос методом POST на текущий адрес, в ответ ждем данные HTML
-        $.ajax({
-            type: 'POST',
-            url: '',
-            dataType: 'html',
-            data: data,
-            // до выполнения запроса удаляем блок с предыдущими сообщениями
-            beforeSend: function()
-            {
-                $('#row-' + name + ' div.msg').remove();
-            },
-            // в случае удачного выполнения добавляем блок с сообщением
-            success: function(msg)
-            {
-                $('#row-' + name).append(msg);
+                $("#email").val("No e-mail");
+                $("#email").css("color","red");
+
             }
-        });
+            if(!password){
 
-        // проверяем, все ли поля прошли валидацию (признак - css-класс "ok" у блока сообщения) и разблокируем кнопку отправки на сервер
-        has = $('.row:has(div.ok)').length + 1;
-        if (has == elements)
-        {
-            $('.submit').prop('disabled', false);
+                $("#password").val("No password");
+                $("#password").css("color","green");
+            }
+            return false;
         }
     });
 
+    $("#submitButton").click(function(){
+
+        var login = $("#email").val();
+        var password = $("#password").val();
+        var first_name = $("#first_name").val();
+        var last_name = $("#last_name").val();
+
+        if(login && password && first_name && last_name){
+            $("#regForm").submit();
+        }
+
+        else {
+            if(!login){
+
+                $("#email").val("No e-mail");
+                $("#email").css("color","red");
+            }
+            if(!password){
+
+                $("#password").val("No password");
+                $("#password").css("color","green");
+            }
+            if(!first_name){
+
+                $("#first_name").val("Введи ім'я, УЙОБОК!");
+                $("#first_name").css("color","red");
+            }
+            if(!last_name){
+
+                $("#last_name").val("Введи прізвище, тварь!");
+                $("#last_name").css("color", "red");
+            }
+            return false;
+        }
+
+    });
+
+    $("#submitComment").click(function(){
+
+        var comment = $("#comment").val();
+
+        if(comment){
+            $("#comForm").submit();
+        }
+        else {
+            if(!comment){
+
+                $("#comment").val("Коментар напиши, ГАВНО!");
+                $("#comment").css("color","red");
+
+            }
+            return false;
+        }
+
+    });
+
+    $("#submitArticle").click(function(){
+
+        var name = $("#name").val();
+        var short_text = $("#short_text").val();
+        var full_text = $("#full_text").val();
+
+        if(name && short_text && full_text){
+            $("#artForm").submit();
+        }
+
+        else {
+            if(!name){
+
+                $("#name").val("Ім'я статті напиши, бля!");
+                $("#name").css("color","red");
+            }
+            if(!short_text){
+
+                $("#short_text").val("А це для кого??");
+                $("#short_text").css("color","green");
+            }
+            if(!full_text){
+
+                $("#full_text").val("Ахуєть, стаття без тексту...");
+                $("#full_text").css("color","red");
+            }
+
+            return false;
+        }
+    })
 
 });
+
+
+
+
+

@@ -9,19 +9,32 @@
 </div>
     <table>
         <tr>
+            <td>---------------------</td>
+        </tr>
+        <tr>
             <td>Коментар</td>
         </tr>
 
     <?php
 
+    echo "<tr>
+              <td>---------------------</td>
+          </tr>";
+
     foreach($this->list as $value){
 
         echo "<tr>
-                <td>{$value['comment']}</td>
-                <td><a href='/article/editcomment/{$value['id']}'>Edit</a></td>
-                <td><a href='/article/editcomment/delete/{$value['id']}'>Delete</a></td>
-              </tr>";
 
+                <td>{$value['comment']}</td>";
+
+                if($this->owner == $value['owner_id']){
+
+                   echo   "<td><a href='/article/editcomment/{$value['id']}'>Edit</a></td>
+                           <td><a href='/article/editcomment/delete/{$value['id']}'>Delete</a></td>";
+
+                }
+
+        echo "</tr>";
     }
 
     ?>

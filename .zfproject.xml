@@ -27,6 +27,12 @@
           <actionMethod actionName="login"/>
           <actionMethod actionName="logout"/>
         </controllerFile>
+        <controllerFile controllerName="Admin">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="users"/>
+          <actionMethod actionName="articles"/>
+          <actionMethod actionName="comments"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Registration"/>
@@ -88,6 +94,18 @@
           <viewControllerScriptsDirectory forControllerName="Article">
             <viewScriptFile forActionName="editcomment"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="users"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="articles"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Admin">
+            <viewScriptFile forActionName="comments"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -140,6 +158,12 @@
             <testApplicationActionMethod forActionName="registration"/>
             <testApplicationActionMethod forActionName="login"/>
             <testApplicationActionMethod forActionName="logout"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Admin">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="users"/>
+            <testApplicationActionMethod forActionName="articles"/>
+            <testApplicationActionMethod forActionName="comments"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

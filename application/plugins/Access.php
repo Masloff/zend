@@ -26,18 +26,19 @@ class Application_Plugin_Access extends Zend_Controller_Plugin_Abstract
 
         $acl->addResource('index');
         $acl->addResource('error');
-
+        $acl->addResource('admin');
 
         $acl->addResource('article');
         $acl->addResource('user');
 
         #admin allow
-        /*$acl->allow('admin', 'error', array('index'));
-        $acl->allow('admin', 'admin', array('index'));*/
+        $acl->allow('admin', 'error', array('index'));
+        $acl->allow('admin', 'admin', array('users','articles','comments'));
+
 
         #user allow
         $acl->allow('user', 'user', array('logout'));
-        $acl->allow('user', 'article', array('list','id','edit'));
+        $acl->allow('user', 'article', array('list','id','edit','new'));
         $acl->deny('user', 'user', array('registration', 'login'));
 
 
@@ -76,7 +77,7 @@ class Application_Plugin_Access extends Zend_Controller_Plugin_Abstract
 
         if (!$this->_acl->isAllowed($role, $resource, $action)) {
 
-            #$request->setControllerName('error')->setActionName('page404');
+            $request->setControllerName('error')->setActionName('page404');
             #throw new Zend_Acl_Exception("This page is not accessible.", Application_Plugin_AccessCheck::ACCESS_DENIED);
         }
     }

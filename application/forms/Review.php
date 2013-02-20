@@ -5,6 +5,8 @@ class Application_Form_Review extends Zend_Form
 
     public function init()
     {
+        $this->setName('comForm');
+
         $id = new Zend_Form_Element_Hidden('id');
 
         $text = new Zend_Form_Element_Textarea('comment');
@@ -14,6 +16,7 @@ class Application_Form_Review extends Zend_Form
                ->setAttrib('id', 'comment');
 
         $submit = new Zend_Form_Element_Submit('submit');
+        $submit->setAttrib('id', 'submitComment');
 
         $this->addElements(array($id, $text, $submit));
     }

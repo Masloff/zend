@@ -1,0 +1,25 @@
+<table>
+    <tr>
+        <td>ID статті</td>
+        <td>Назва статті</td>
+        <td>Опис</td>
+        <td>Текст статті</td>
+        <td>ID автора</td>
+
+    </tr>
+
+<?php
+foreach($this->list as $value){
+
+    echo "<tr>
+                <td>{$value['id']}</td>
+                <td>{$value['name']}</td>
+                <td>{$value['short_text']}</td>
+                <td>{$value['full_text']}</td>
+                <td>{$value['owner_id']}</td>
+                <td><a href='/article/edit/{$value['id']}'>Edit</a></td>
+                <td><a href='/article/edit/delete/{$value['id']}'>Delete</a></td>
+              </tr>";
+
+}
+?>
