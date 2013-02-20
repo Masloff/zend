@@ -6,7 +6,8 @@ class Application_Form_Article extends Zend_Form
     public function init()
     {
         $this->setName('artForm');
-        $this->setAction('/article/new');
+
+        $id = new Zend_Form_Element_Hidden('id');
 
         $name = new Zend_Form_Element_Text('name');
         $name  ->setLabel('Назва статті')
@@ -29,7 +30,7 @@ class Application_Form_Article extends Zend_Form
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('id', 'submit');
 
-        $this->addElements(array($name, $short_text, $full_text, $submit));
+        $this->addElements(array($id, $name, $short_text, $full_text, $submit));
 
     }
 

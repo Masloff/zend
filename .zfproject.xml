@@ -18,6 +18,8 @@
           <actionMethod actionName="id"/>
           <actionMethod actionName="review"/>
           <actionMethod actionName="commentList"/>
+          <actionMethod actionName="edit"/>
+          <actionMethod actionName="editcomment"/>
         </controllerFile>
         <controllerFile controllerName="User">
           <actionMethod actionName="index"/>
@@ -80,6 +82,12 @@
           <viewControllerScriptsDirectory forControllerName="Article">
             <viewScriptFile forActionName="commentList"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="edit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="editcomment"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -124,6 +132,8 @@
             <testApplicationActionMethod forActionName="id"/>
             <testApplicationActionMethod forActionName="review"/>
             <testApplicationActionMethod forActionName="commentList"/>
+            <testApplicationActionMethod forActionName="edit"/>
+            <testApplicationActionMethod forActionName="editcomment"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="User">
             <testApplicationActionMethod forActionName="index"/>

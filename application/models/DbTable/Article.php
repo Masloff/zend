@@ -50,5 +50,21 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract
 
     }
 
+    public function updateArticle($array, $owner_id){
+
+        $where   = array(
+
+            $this->getAdapter()->quoteInto('id = ?', $array['id']),
+            $this->getAdapter()->quoteInto('owner_id = ?', $owner_id)
+
+        );
+
+
+        unset($array['submit']);
+        return $this->update($array, $where);
+
+
+    }
+
 }
 

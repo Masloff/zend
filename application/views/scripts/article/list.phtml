@@ -8,7 +8,8 @@ if($this->name){
     <tr>
         <td>Назва статті</td>
         <td>Опис</td>
-        <td>Текст статті</td>
+        <td>Перейти до статті</td>
+        <td>Редагувати</td>
 
     </tr>
 
@@ -19,7 +20,8 @@ if($this->name){
         echo "<tr>
                 <td>{$value['name']}</td>
                 <td>{$value['short_text']}</td>
-                <td>{$value['full_text']}</td>
+                <td><a href='/article/id/{$value['id']}'>Show</a></td>
+                <td><a href='/article/edit/{$value['id']}'>Edit</a></td>
               </tr>";
 
     }

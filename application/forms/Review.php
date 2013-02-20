@@ -5,6 +5,8 @@ class Application_Form_Review extends Zend_Form
 
     public function init()
     {
+        $id = new Zend_Form_Element_Hidden('id');
+
         $text = new Zend_Form_Element_Textarea('comment');
         $text  ->setLabel('Залишити коментар')
                ->setRequired(true)
@@ -13,7 +15,7 @@ class Application_Form_Review extends Zend_Form
 
         $submit = new Zend_Form_Element_Submit('submit');
 
-        $this->addElements(array($text, $submit));
+        $this->addElements(array($id, $text, $submit));
     }
 
 

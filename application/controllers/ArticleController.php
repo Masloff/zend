@@ -16,6 +16,7 @@ class ArticleController extends Zend_Controller_Action
     public function newAction()
     {
         $form = new Application_Form_Article();
+        
         $db = new Application_Model_DbTable_Article();
         $this->view->form = $form;
 
@@ -46,6 +47,7 @@ class ArticleController extends Zend_Controller_Action
 
             }
         }
+
     }
 
     public function listAction()
@@ -111,8 +113,71 @@ class ArticleController extends Zend_Controller_Action
         // action body
     }
 
+    public function editAction()
+    {
+
+        $form = new Application_Form_Article();
+        $db = new Application_Model_DbTable_Article();
+        $identity =  Zend_Auth::getInstance()->getStorage()->read();
+
+
+        if($this->getRequest()->isPost()){
+
+            #отримуємо дані з пост запиту
+            $formData = $this->getRequest()->getPost();
+            #перевіряємо чи всі обов'язкові(за налаштуваннями форми) дані отримано
+            if($form->isValid($formData)){
+
+                $db->updateArticle($formData, $identity->id);
+
+            }
+        }
+
+        $data = $db->getArticleById($this->getRequest()->getParam('id'));
+
+        $this->view->form = $form->populate($data);
+    }
+
+    public function editcommentAction()
+    {
+
+        $form = new Application_Form_Review();
+        $db = new Application_Model_DbTable_Article();
+        $comments = new Application_Model_DbTable_Comment();
+        $identity =  Zend_Auth::getInstance()->getStorage()->read();
+
+        if($this->getRequest()->getParam('delete')){
+
+
+            $comments->deleteComment($this->getRequest()->getParam('delete'));
+
+        }
+
+        if($this->getRequest()->isPost()){
+
+            #отримуємо дані з пост запиту
+            $formData = $this->getRequest()->getPost();
+            #перевіряємо чи всі обов'язкові(за налаштуваннями форми) дані отримано
+            if($form->isValid($formData)){
+
+                $comments->updateComment($formData, $identity->id);
+
+            }
+        }
+
+        $data = $comments->getCommentById($this->getRequest()->getParam('id'));
+
+        $this->view->form = $form->populate($data);
+
+
+    }
+
 
 }
+
+
+
+
 
 
 
